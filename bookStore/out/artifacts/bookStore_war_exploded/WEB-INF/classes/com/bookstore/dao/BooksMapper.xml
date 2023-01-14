@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bookstore.dao.BooksMapper">
+    <!--查询全部Book-->
+    <select id="queryBooks" resultType="com.bookstore.pojo.Books">
+      SELECT * from books
+   </select>
+    <select id="queryBooksByShear" resultType="com.bookstore.pojo.Books" parameterType="com.bookstore.pojo.Books">
+      SELECT * from books where
+       bookid LIKE '%${bookmore}%' or bookname LIKE '%${bookmore}%'
+
+   </select>
+    <insert id="addBook"  parameterType="com.bookstore.pojo.Books">
+insert into books (bookid,bookname,bookpricture,bookprice,bookmun)
+ VALUES (#{bookid},#{bookname},#{bookpricture},#{bookprice},#{bookmun})
+   </insert>
+
+    <delete id="decBook"  parameterType="com.bookstore.pojo.Books">
+     delete from books
+     where  bookid=#{bookid}
+   </delete>
+    <update id="updateBook"   parameterType="com.bookstore.pojo.Books">
+      update  books set bookname=#{bookname},bookprice=#{bookprice},bookmun=#{bookmun}
+      where bookid=#{bookid}
+   </update>
+</mapper>

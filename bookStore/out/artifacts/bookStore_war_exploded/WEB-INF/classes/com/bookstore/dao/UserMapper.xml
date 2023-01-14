@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bookstore.dao.UserMapper">
+    <!--查询全部User-->
+    <select id="queryUser" resultType="com.bookstore.pojo.User">
+      SELECT * from users
+   </select>
+    <insert id="newUser"  parameterType="com.bookstore.pojo.User">
+ insert into users (userid,password,adder,email) VALUES (#{userid},#{password},#{adder},#{email})
+   </insert>
+    <select id="loginUser" resultType="com.bookstore.pojo.User">
+      SELECT * from users where userid=#{userid} and password=#{password}
+   </select>
+    <select id="findUser" resultType="com.bookstore.pojo.User">
+      SELECT * from users where userid=#{userid}
+   </select>
+    <update id="updateUser" parameterType="com.bookstore.pojo.User">
+        update users set  email=#{email},adder=#{adder} where userid=#{userid}
+    </update>
+    <select id="loginUserM" resultType="com.bookstore.pojo.User">
+      SELECT * from users where userid=#{userid} and password=#{password} and issa=1
+   </select>
+</mapper>
